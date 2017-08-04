@@ -12,4 +12,8 @@ export class RecipeItemComponent implements OnInit {
   ngOnInit() {
   }
 
+  getItem(item) {
+    return item;
+  }
+
 }
