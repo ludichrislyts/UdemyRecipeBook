@@ -1,7 +1,7 @@
-<app-header></app-header>
+<app-header (featureSelected)="navItemClicked($event)"></app-header>
 <div class="container">
   <div class="row">
-    <app-recipes></app-recipes>
-    <app-shopping-list></app-shopping-list>
+    <app-recipes *ngIf="loadedFeature === 'recipes'"></app-recipes>
+    <app-shopping-list *ngIf="loadedFeature !== 'recipes'"></app-shopping-list>
   </div>
 </div>
