@@ -5,6 +5,7 @@ import { ShoppingListService } from "../../shopping-list/shopping-list.service";
 import { Ingredient } from "../../shared/ingredient.model";
 import { RecipesService } from "../recipes.service";
 import { Route, ActivatedRoute, Params, Router } from "@angular/router";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
   selector: 'app-recipe-detail',
@@ -14,7 +15,10 @@ import { Route, ActivatedRoute, Params, Router } from "@angular/router";
 export class RecipeDetailComponent implements OnInit {
   content: Recipe;
   id: number;
-  constructor(private recipeService: RecipesService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private recipeService: RecipesService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
