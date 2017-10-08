@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
-import { DropdownDirective } from '../../shared/dropdown.directive';
-import { ShoppingListService } from "../../shopping-list/shopping-list.service";
-import { Ingredient } from "../../shared/ingredient.model";
-import { RecipesService } from "../recipes.service";
-import { Route, ActivatedRoute, Params, Router } from "@angular/router";
-import { AuthService } from "../../auth/auth.service";
+import { RecipesService } from '../recipes.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -18,16 +15,16 @@ export class RecipeDetailComponent implements OnInit {
   constructor(private recipeService: RecipesService,
               private route: ActivatedRoute,
               private router: Router,
-              private auth: AuthService) { }
+              protected auth: AuthService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.id = +params['id']
+      this.id = +params['id'];
       this.content = this.recipeService.getRecipe(this.id);
-    })
+    });
   }
 
-  public sendToList(ingredients: Ingredient[]) {
+  public sendToList() {
     this.recipeService.addIngredientsToShoppingList(this.content.ingredients);
   }
 

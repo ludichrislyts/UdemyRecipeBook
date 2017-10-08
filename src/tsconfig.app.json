@@ -3,7 +3,10 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
+    "importHelpers": false,
     "module": "es2015",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "types": []
   },
   "exclude": [
