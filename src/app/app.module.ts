@@ -4,36 +4,23 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRouterModule } from './app-router.module';
-import { HomeComponent } from './home/home.component';
-import { RecipesService } from './recipes/recipes.service';
-import { DataStorageService } from './shared/dataStorage.service';
-import { AuthService } from './auth/auth.service';
-import { AuthGuard } from './auth/auth-guard.service';
 import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     AuthModule,
     BrowserModule,
     AppRouterModule,
     HttpModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
-  providers: [
-    ShoppingListService,
-    RecipesService,
-    DataStorageService,
-    AuthService,
-    AuthGuard
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
