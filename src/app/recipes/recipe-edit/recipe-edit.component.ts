@@ -20,7 +20,7 @@ export class RecipeEditComponent implements OnInit {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
       this.initForm();
-    })
+    });
   }
 
   onSubmit() {
@@ -37,14 +37,14 @@ export class RecipeEditComponent implements OnInit {
           Validators.pattern(/^[1-9]+[0-9]*$/)
         ])
       })
-    )
+    );
   }
 
   onDeleteIngredient(index: number) {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 
-  onCancel() {    
+  onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
 

@@ -15,7 +15,7 @@ export class RecipeDetailComponent implements OnInit {
   constructor(private recipeService: RecipesService,
               private route: ActivatedRoute,
               private router: Router,
-              protected auth: AuthService) { }
+              public auth: AuthService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {

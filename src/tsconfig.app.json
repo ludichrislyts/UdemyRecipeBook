@@ -6,7 +6,6 @@
     "importHelpers": false,
     "module": "es2015",
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "types": []
   },
   "exclude": [
