@@ -5,8 +5,8 @@ import { RecipesService } from '../recipes/recipes.service';
 import { FIREBASE_URL } from './constants';
 import 'rxjs/Rx';
 import { Recipe } from '../recipes/recipe.model';
-import { AuthService } from '../auth/auth.service';
-import { HttpParams } from '@angular/common/http';
+// import { AuthService } from '../auth/auth.service';
+// import { HttpParams } from '@angular/common/http';
 import { HttpRequest } from '@angular/common/http';
 
 @Injectable()
@@ -14,11 +14,11 @@ export class DataStorageService {
   constructor(
     private http: HttpClient,
     private recipesService: RecipesService,
-    private auth: AuthService
+    // private auth: AuthService
   ) {}
 
   storeRecipes() {
-    const token = this.auth.getToken();
+    // const token = this.auth.getToken();
 
     // return this.http.put(FIREBASE_URL + token, this.recipesService.getRecipes());
 
@@ -32,7 +32,7 @@ export class DataStorageService {
       this.recipesService.getRecipes(),
       {
         reportProgress: true,
-        params: new HttpParams().set('auth', token)
+        // params: new HttpParams().set('auth', token)
       }
     );
 
@@ -40,11 +40,11 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    const token = this.auth.getToken();
+    // const token = this.auth.getToken();
 
     this.http
       .get<Recipe[]>(FIREBASE_URL, {
-        params: new HttpParams().set('auth', token)
+        // params: new HttpParams().set('auth', token)
       })
       .map(recipes => {
         for (const recipe of recipes) {
