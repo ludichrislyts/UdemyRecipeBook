@@ -1,31 +1,24 @@
 import { Ingredient } from '../shared/ingredient.model';
 import { Subject } from 'rxjs/Subject';
+import { Store } from '@ngrx/store';
+import * as ShoppingListActions from './store/shopping-list.actions';
+import { Injectable } from '@angular/core';
+import { StoreModel } from './store/store.model';
 
+@Injectable()
 export class ShoppingListService {
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
   private ingredients: Ingredient[] = [];
 
-  constructor() {}
+  constructor(private store: Store<StoreModel>) { }
 
   addIngredient(ingredient: Ingredient, emit: boolean = true) {
-    const index = this.checkIngredientList(ingredient.name);
-    if (index >= 0) {
-      this.ingredients[index].amount += ingredient.amount;
-    }    
-    else {
-      this.ingredients.push(ingredient);
-    }
-    if (emit) {
-      this.ingredientsChanged.next(this.ingredients.slice());
-    }
+    this.store.dispatch(new ShoppingListActions.AddIngredient(ingredient));
   }
 
   addIngredients(ingredients: Ingredient[]) {
-    for (let ingredient of ingredients) {
-      this.addIngredient(ingredient, false);
-    }
-    this.ingredientsChanged.next(this.ingredients.slice());
+    this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
   }
 
   updateIngredient(index: number, newIngredient: Ingredient) {
@@ -44,17 +37,5 @@ export class ShoppingListService {
 
   getIngredients() {
     return this.ingredients.slice();
-  }
-
-  checkIngredientList(name: string): number {    
-    let listIndex = -1;
-    if (this.ingredients.length > 0) {
-      this.ingredients.forEach((value, index) => {
-        if (value.name === name) {
-          listIndex = index;
-        }
-      });
-    }
-    return listIndex;
   }
 }
