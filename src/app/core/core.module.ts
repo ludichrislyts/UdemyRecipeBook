@@ -3,7 +3,6 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRouterModule } from '../app-router.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { RecipesService } from '../recipes/recipes.service';
 import { DataStorageService } from '../shared/dataStorage.service';
 import { AuthService } from '../auth/auth.service';
@@ -25,7 +24,6 @@ import { LogginInterceptor } from '../shared/logging.interceptor';
     HeaderComponent
   ],
   providers: [
-    ShoppingListService,
     RecipesService,
     DataStorageService,
     AuthService,
